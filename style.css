@@ -15,7 +15,8 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    color:#fefefe;
+    color: #222;
+    transition: background 0.5s ease, color 0.5s ease;
 }
 
 header {
@@ -25,6 +26,8 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
+    position: relative;
+    z-index: 10;
 }
 
 header h1 {
@@ -40,7 +43,7 @@ nav ul {
 }
 
 nav ul li a {
-    color: #333;
+    color: #007bff;
     text-decoration: none;
     font-weight: bold;
     transition: 0.3s;
@@ -93,6 +96,19 @@ a:hover {
     margin: 20px auto;
     border: 4px solid #333;
     object-fit: cover;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.3s ease;
+}
+.profile-photo:hover {
+  transform: scale(1.05);
+}
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 ul {
@@ -112,4 +128,343 @@ footer {
     padding: 20px;
     background: #f4f4f4;
     margin-top: 30px;
+}
+
+/* Scroll-to-top Button Styles */
+#topBtn {
+  display: none;
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 100;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 0;
+  animation: fadeInUp 0.6s;
+}
+#topBtn svg {
+  width: 48px;
+  height: 48px;
+  transition: filter 0.2s;
+}
+#topBtn:hover {
+  transform: scale(1.1) rotate(-10deg);
+  box-shadow: 0 8px 24px rgba(248,180,0,0.3);
+}
+
+/* Dark Mode Toggle Styles */
+#darkToggle {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  z-index: 100;
+  background: #222;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+  transition: background 0.3s, box-shadow 0.2s;
+  animation: fadeInLeft 0.6s;
+}
+#darkToggle:hover {
+  background: #f8b400;
+  box-shadow: 0 8px 24px rgba(248,180,0,0.3);
+}
+#darkToggle svg {
+  width: 32px;
+  height: 32px;
+  transition: filter 0.2s;
+}
+
+/* Dark Mode Theme */
+/* New dark mode color */
+:root {
+  --dark-accent: #4fd1c5;
+}
+
+.dark-mode {
+  background: #181818 !important;
+  color: var(--dark-accent) !important;
+  transition: background 0.5s, color 0.5s;
+  animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0.8;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dark-mode header {
+  background: #222 !important;
+}
+.dark-mode section, .dark-mode footer {
+  background: #222 !important;
+  color: var(--dark-accent) !important;
+}
+.dark-mode a {
+  color: var(--dark-accent) !important;
+}
+.dark-mode #darkToggle {
+  background: var(--dark-accent) !important;
+}
+.dark-mode #darkToggle:hover {
+  background: #222 !important;
+}
+
+/* Update scroll-to-top button icon color in dark mode for contrast */
+.dark-mode #topBtn svg circle {
+  fill: var(--dark-accent);
+}
+.dark-mode #topBtn svg path {
+  fill: #222;
+}
+
+/* Smooth transition for all elements in dark mode */
+.dark-mode * {
+  transition: color 0.3s ease, background 0.3s ease;
+}
+
+/* Loader Overlay */
+#loader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(24,24,24,0.95);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s;
+}
+.spinner {
+  border: 6px solid #eee;
+  border-top: 6px solid #4fd1c5;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Scroll Progress Bar */
+#scrollProgress {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0%;
+  height: 5px;
+  background: linear-gradient(90deg, #4fd1c5, #007bff);
+  z-index: 1500;
+  transition: width 0.2s;
+}
+
+/* Particle Background */
+#particles-js {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Typing Animation */
+#typed {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #007bff;
+  letter-spacing: 2px;
+}
+
+/* Skill Progress Bars */
+.skill-bar {
+  margin: 18px 0;
+}
+.skill-bar span {
+  font-weight: bold;
+  color: #007bff;
+}
+.bar {
+  background: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 18px;
+  margin-top: 6px;
+}
+.progress {
+  height: 100%;
+  border-radius: 20px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(.4,2,.6,1);
+}
+.progress.html { background: linear-gradient(90deg, #4fd1c5, #007bff); width: 90%; }
+.progress.css { background: linear-gradient(90deg, #4fd1c5, #007bff); width: 75%; }
+.progress.python { background: linear-gradient(90deg, #007bff, #4fd1c5); width: 60%; }
+.progress.c { background: linear-gradient(90deg, #ff6b6b, #007bff); width: 50%; }
+
+/* Card Hover Effects */
+.project-card {
+  transition: transform 0.3s, box-shadow 0.3s;
+  background: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  margin: 12px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+.project-card:hover {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 8px 32px rgba(79,209,197,0.15);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255,255,255,0.10);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px 0 rgba(31,38,135,0.10);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 18px 0;
+}
+.social {
+  font-size: 2rem;
+  color: #4fd1c5;
+  transition: color 0.3s, transform 0.3s;
+}
+.social.github:hover { color: #333; transform: scale(1.2) rotate(-8deg); }
+.social.linkedin:hover { color: #0077b5; transform: scale(1.2) rotate(8deg); }
+.social.twitter:hover { color: #1da1f2; transform: scale(1.2) rotate(-8deg); }
+
+/* Contact Form */
+#contactForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0;
+  animation: fadeIn 1.2s;
+}
+#contactForm input, #contactForm textarea {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #4fd1c5;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.15);
+  color: #222;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+#contactForm input:focus, #contactForm textarea:focus {
+  border: 1.5px solid #007bff;
+  box-shadow: 0 2px 8px rgba(79,209,197,0.12);
+}
+#contactForm button {
+  background: linear-gradient(90deg, #4fd1c5, #007bff);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+#contactForm button:hover {
+  background: linear-gradient(90deg, #007bff, #4fd1c5);
+  transform: scale(1.05);
+}
+
+/* Smooth Scroll Fade-in for Sections */
+section, .glass {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s, transform 0.8s;
+}
+section.visible, .glass.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optional: Add a semi-transparent overlay for better text contrast */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(255,255,255,0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ensure all main content is above overlay */
+main, header, section, footer, .hero, .glass {
+  position: relative;
+  z-index: 2;
+}
+
+/* Remove overlay in dark mode */
+.dark-mode::before {
+  display: none;
+}
+
+/* Restore yellow accent color for headings and accents */
+h2, h3, h4, h5, h6 {
+  color: #f8b400;
+}
+
+.dark-mode h2, .dark-mode h3, .dark-mode h4, .dark-mode h5, .dark-mode h6 {
+  color: #f8b400;
+}
+
+nav ul li a {
+  color: #f8b400;
+}
+
+/* Restore yellow in gradients and icons */
+.progress.css { background: linear-gradient(90deg, #f8b400, #4fd1c5); width: 75%; }
+.progress.python { background: linear-gradient(90deg, #007bff, #f8b400); width: 60%; }
+
+#topBtn svg circle {
+  fill: #f8b400;
+}
+.dark-mode #topBtn svg circle {
+  fill: #f8b400;
+}
+#topBtn svg path {
+  fill: #333;
+}
+.dark-mode #topBtn svg path {
+  fill: #222;
+}
+
+#darkToggle {
+  background: #f8b400;
+}
+.dark-mode #darkToggle {
+  background: #f8b400 !important;
+}
+
+#sunIcon circle, #sunIcon g, #moonIcon path {
+  fill: #f8b400 !important;
+  stroke: #f8b400 !important;
+}
+.dark-mode #sunIcon circle, .dark-mode #sunIcon g, .dark-mode #moonIcon path {
+  fill: #f8b400 !important;
+  stroke: #f8b400 !important;
 }

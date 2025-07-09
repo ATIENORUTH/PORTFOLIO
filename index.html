@@ -6,8 +6,13 @@
     <title>Document</title>
     <link href="https://fonts" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
 <body>
+    <div id="loader"><div class="spinner"></div></div>
+    <div id="scrollProgress"></div>
+    <div id="particles-js"></div>
+
     <header>
         <h1>JOY RUTH</h1>
         <nav>
@@ -23,7 +28,7 @@
     </header>
     <div class="hero">
         <img src="cute.jpg" alt="my profile photo" class="profile-photo">
-        <h2>Welcome to my Portfolio</h2>
+        <h2><span id="typed"></span></h2>
     </div>
     <section id="about">
         <h2>About Me</h2>
@@ -35,12 +40,22 @@
          <h2>My Skills</h2>
          <P>I am continously learning and improving my skills in software development. Here are some of the key areas i am currently working on:</P>
          <h3>Technical Skills:</h3>
-         <ul>
-            <li><strong>HTML:</strong> Comfortable with structuring web pages and adding basic styling.</li>
-            <li><strong>CSS:</strong> Still learning how to style pages effectively and working on improving my understanding.</li>
-            <li><strong>PYTHON:</strong> A beginner exploring programming concepts, syntax, and problem-solving.</li>
-            <li><strong>C PROGRAMMING:</strong> Currently facing challenges but working towards improving my understanding of logic and memory management.</li>
-         </ul>
+         <div class="skill-bar">
+            <span>HTML</span>
+            <div class="bar"><div class="progress html"></div></div>
+         </div>
+         <div class="skill-bar">
+            <span>CSS</span>
+            <div class="bar"><div class="progress css"></div></div>
+         </div>
+         <div class="skill-bar">
+            <span>PYTHON</span>
+            <div class="bar"><div class="progress python"></div></div>
+         </div>
+         <div class="skill-bar">
+            <span>C PROGRAMMING</span>
+            <div class="bar"><div class="progress c"></div></div>
+         </div>
          <h3>Soft Skills</h3>
          <ul>
             <li><strong>Problem-Solving:</strong> Enjoy breaking down problems and finding logical solutions, even when it takes time.</li>
@@ -51,14 +66,14 @@
          </ul>
          <p>I am committed to improving my skills and gaining more experience in software development. My goal is to become more confident in coding and working in real-world projects.</p>
     </section>
-    <section id="education">
+    <section id="education" class="glass">
         <h2>Educational Background</h2>
         <p>I am currently pursuing a Diploma in Computer Science at the Technical University of Mombasa, where i am learning the fundamentals of computing, operating systems, data structures  and software engineering principles. </p>
         <p>In addition to my academic studies , i am part of the Power Learn Project Scholarship, which allows me to further my studies in Software Engineering. Through this scholarship, i am gaining access to real world learning experiences, including mentorship opportunities that are helping me grow both academically and professionally.</p>
         <a href="Joy Ruth.pdf"download>Download My CV</a>
     </section>
 
-    <section id="interests">
+    <section id="interests" class="glass">
         <h2>Interests</h2>
         <p>
             I have a deep passion for technology and software development. My curiosity drives me to explore different aspects of programming and web development. 
@@ -77,15 +92,21 @@
         </p>
     </section>
 
-    <section id="projects">
-        <h2>projects</h2>
+    <section id="projects" class="glass">
+        <h2>Projects</h2>
         <ul>
-           <li><a href="https://github.com/ATIENORUTH/FIRST-PROJECT.git" target="_blank">First Project- A project showcasing who i truly am.</a></li>
-           <li><a href="https://github.com/ATIENORUTH/PUPPIES.git" target="_blank">Puppies Project- A fun project about puppies</a></li>
+           <li class="project-card"><a href="https://github.com/ATIENORUTH/FIRST-PROJECT.git" target="_blank">First Project- A project showcasing who I truly am.</a></li>
+           <li class="project-card"><a href="https://github.com/ATIENORUTH/PUPPIES.git" target="_blank">Puppies Project- A fun project about puppies</a></li>
         </ul> 
     </section>
-    <section id="contacts">
+    <section id="contacts" class="glass">
         <h2>Contact Me</h2>
+        <form id="contactForm">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input type="email" name="email" placeholder="Your Email" required />
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
         <p>If you'd like to get in touch with me, you can reach me through the following methods:</p>
             <ul>
                 <li>Phone: 0115552044 (Available for calls, sms and whatsapp) </li>
@@ -98,6 +119,49 @@
             </div>
         <p>I am always open to connecting with other tech enthusiasts, collaborating on projects, and learning from experienced professionals. Feel free to reach out.</p>
     </section>
+    <footer>
+        <div class="social-icons">
+            <a href="https://github.com/ATIENORUTH" target="_blank" class="social github"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/ruth-joy-526a32332" target="_blank" class="social linkedin"><i class="fab fa-linkedin"></i></a>
+            <a href="https://twitter.com/JoyRuth489083" target="_blank" class="social twitter"><i class="fab fa-twitter"></i></a>
+        </div>
+        <p>&copy;2025; Joy Ruth</p>
+    </footer>
     <p>&copy;2025; Joy Ruth</p>
+    <!-- Scroll-to-top Button -->
+    <button onclick="topFunction()" id="topBtn" title="Go to top">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="12" fill="#f8b400"/>
+        <path d="M12 8L8 12H11V16H13V12H16L12 8Z" fill="#333"/>
+      </svg>
+    </button>
+
+    <!-- Dark Mode Toggle Switch -->
+    <button id="darkToggle" onclick="toggleDark()" title="Toggle dark mode">
+      <span id="darkIcon">
+        <!-- Sun icon (default) -->
+        <svg id="sunIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="5" fill="#f8b400"/>
+          <g stroke="#f8b400" stroke-width="2">
+            <line x1="12" y1="1" x2="12" y2="4"/>
+            <line x1="12" y1="20" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="4" y2="12"/>
+            <line x1="20" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </g>
+        </svg>
+        <!-- Moon icon (hidden by default, shown in dark mode) -->
+        <svg id="moonIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none;" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z" fill="#f8b400"/>
+        </svg>
+      </span>
+    </button>
+    <!-- Scripts for particles.js and typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script src="script.js"></script>
 </body>
 </html>
