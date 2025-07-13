@@ -9,14 +9,14 @@ html {
 }
 
 body {
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    line-height: 1.6;
-    background-image: url(SUNSET.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    color: #222;
-    transition: background 0.5s ease, color 0.5s ease;
+  font-family: 'Inter', 'Segoe UI', 'Roboto', Arial, sans-serif;
+  line-height: 1.6;
+  background-image: url(SUNSET.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #222;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 header {
